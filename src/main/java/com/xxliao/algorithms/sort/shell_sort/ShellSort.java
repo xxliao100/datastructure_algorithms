@@ -1,11 +1,11 @@
-package com.xxliao.algorithms.sort.selection_sort;
+package com.xxliao.algorithms.sort.shell_sort;
 
 /**
  * @author xxliao
- * @description: 选择排序
+ * @description: 希尔排序
  * @date 2024/5/30 21:44
  */
-public class InsertionSort {
+public class ShellSort {
 
     public static void main(String[] args) {
         int[] array = {1,6,2,6,8,3,8,3,9,3,4,6,56,8};
@@ -18,44 +18,31 @@ public class InsertionSort {
 
 
     /**
-     * @description  选择排序
+     * @description  希尔排序
      * @author  xxliao
      * @date  2024/5/30 21:46
      */
     public static void sort(int[] array) {
-        // 定义最小值索引
-        //保存参与单趟排序的第一个数和最后一个数的下标
-        int begin = 0, end = array.length - 1;
-        while (begin < end) {
-            //保存最大值的下标
-            int maxIndex = begin;
-            //保存最小值的下标
-            int minIndex = begin;
-            //找出最大值和最小值的下标
-            for (int i = begin; i <= end; ++i) {
-                if (array[i] < array[minIndex]) {
-                    minIndex = i;
+        // 定义gap,初始等于length
+        int gap = array.length;
+        while(gap > 1) {
+            gap = gap / 2;
+            // 单次gap排序
+            for (int i = 0; i < array.length - gap; i++) {
+                int end = i;
+                int nextItem = array[end+gap];
+                while(end >= 0) {
+                    if(array[end] > nextItem) {
+                        // 前面的值比后面大,换到后面位置去
+                        array[end+gap] = array[end];
+                        end = end - gap;// end小于gap时候是退出里层循环，end大于gap的时候是进行下一次的轮询
+                    }else {
+                        // 前面的值小于等于后面的值，不用替换
+                        break;
+                    }
                 }
-                if (array[i] > array[maxIndex]) {
-                    maxIndex = i;
-                }
+                array[end+gap] = nextItem;
             }
-            //最小值放在序列开头
-            int temp = array[minIndex];
-            array[minIndex] = array[begin];
-            array[begin] = temp;
-
-            //防止最大的数在begin位置被换走
-            if (begin == maxIndex)
-                maxIndex = minIndex;
-
-            //最大值放在序列结尾
-            temp = array[maxIndex];
-            array[maxIndex] = array[end];
-            array[end] = temp;
-
-            ++begin;
-            --end;
         }
     }
 

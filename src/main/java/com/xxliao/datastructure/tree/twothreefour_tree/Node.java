@@ -87,7 +87,7 @@ public class Node {
 
     //插入数据项
     public int insertItem(Integer newDataItem) {
-        dataItemCount ++;
+        dataItemCount++;
         for(int i=CHILD_NODE_COUNT-2; i>=0; i--) {
             if(dataItems[i] == null) {
                 continue;

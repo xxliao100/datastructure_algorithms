@@ -1,4 +1,4 @@
-package com.xxliao.algorithms.greedy.demo01;
+package com.xxliao.algorithms.greedy;
 
 import java.util.Comparator;
 

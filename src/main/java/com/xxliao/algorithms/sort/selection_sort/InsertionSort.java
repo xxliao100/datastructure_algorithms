@@ -1,8 +1,8 @@
-package com.xxliao.algorithms.sort.insertion_sort;
+package com.xxliao.algorithms.sort.selection_sort;
 
 /**
  * @author xxliao
- * @description: 插入排序
+ * @description: 选择排序
  * @date 2024/5/30 21:44
  */
 public class InsertionSort {
@@ -18,21 +18,44 @@ public class InsertionSort {
 
 
     /**
-     * @description  插入排序
+     * @description  选择排序
      * @author  xxliao
      * @date  2024/5/30 21:46
      */
     public static void sort(int[] array) {
-        for (int i = 1; i <= array.length - 1; i++) {
-            int temp = array[i]; //记录当前值
-            int j = i -1; //记录值索引的前一个值，也就是当前值，需要和前面0 ~  i-1 范围的值进行比较。
-            while(j >= 0 && array[j] > temp) { //前面的值 比 后面的值大，进行交换
-                array[j+1] = array[j]; // 将大的值往后移动一位，原值在temp中
-                j--;
+        // 定义最小值索引
+        //保存参与单趟排序的第一个数和最后一个数的下标
+        int begin = 0, end = array.length - 1;
+        while (begin < end) {
+            //保存最大值的下标
+            int maxIndex = begin;
+            //保存最小值的下标
+            int minIndex = begin;
+            //找出最大值和最小值的下标
+            for (int i = begin; i <= end; ++i) {
+                if (array[i] < array[minIndex]) {
+                    minIndex = i;
+                }
+                if (array[i] > array[maxIndex]) {
+                    maxIndex = i;
+                }
             }
-            // 找到放置的位置，赋值
-            array[j+1] = temp;
-            printArray(array);
+            //最小值放在序列开头
+            int temp = array[minIndex];
+            array[minIndex] = array[begin];
+            array[begin] = temp;
+
+            //防止最大的数在begin位置被换走
+            if (begin == maxIndex)
+                maxIndex = minIndex;
+
+            //最大值放在序列结尾
+            temp = array[maxIndex];
+            array[maxIndex] = array[end];
+            array[end] = temp;
+
+            ++begin;
+            --end;
         }
     }
 
@@ -47,4 +70,5 @@ public class InsertionSort {
         }
         System.out.println();
     }
+
 }
