@@ -5,5 +5,4 @@
 14种常见算法：递归、二分查找、冒泡排序、快速排序、堆排序、计数排序、插入排序、选择排序、希尔排序、归并排序、贪婪算法、分治算法、回溯算法、动态规划；
 4种字符串匹配算法：BF算法、RK算法、BM算法、Trie算法。
 
-数据结构笔记，请参考：https://blog.csdn.net/lxx19941220/category_8864035.html
-算法笔记，请参考：https://blog.csdn.net/lxx19941220/category_12686880.html
+笔记内容也写成了博客，放在了：https://blog.csdn.net/lxx19941220/category_8864035.html 
